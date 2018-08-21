@@ -1,0 +1,79 @@
+# The name of the workload class to use
+workload=com.yahoo.ycsb.workloads.CoreWorkload
+
+# There is no default setting for recordcount but it is
+# required to be set.
+# The number of records in the table to be inserted in
+# the load phase or the number of records already in the 
+# table before the run phase.
+recordcount=1000000
+
+# There is no default setting for operationcount but it is
+# required to be set.
+# The number of operations to use during the run phase.
+operationcount=30000
+
+
+# The offset of the first insertion
+insertstart=0
+
+# The number of fields in a record
+fieldcount=1
+
+# The size of each field (in bytes)
+fieldlength=1000
+
+# Should read all fields
+readallfields=true
+
+# Should write all fields on update
+writeallfields=false
+
+# The distribution used to choose the length of a field
+fieldlengthdistribution=constant
+
+# What proportion of operations are reads
+readproportion=1.0
+
+# What proportion of operations are updates
+updateproportion=0
+
+# What proportion of operations are inserts
+insertproportion=0
+
+# What proportion of operations read then modify a record
+readmodifywriteproportion=0
+
+# What proportion of operations are scans
+scanproportion=0
+
+# On a single scan, the maximum number of records to access
+maxscanlength=1000
+
+# The distribution used to choose the number of records to access on a scan
+scanlengthdistribution=uniform
+
+# Should records be inserted in order or pseudo-randomly
+insertorder=hashed
+
+# The distribution of requests across the keyspace
+requestdistribution=uniform
+
+# Percentage of data items that constitute the hot set
+hotspotdatafraction=1.0
+
+# Percentage of operations that access the hot set
+hotspotopnfraction=1.0
+
+# The name of the database table to run queries against
+table=usertable_1000000
+
+
+# How the latency measurements are presented
+measurementtype=raw
+
+# The range of latencies to track in the histogram (milliseconds)
+histogram.buckets=1000
+
+# Granularity for time series (in milliseconds)
+timeseries.granularity=1000
