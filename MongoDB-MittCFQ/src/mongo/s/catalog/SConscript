@@ -1,0 +1,75 @@
+# -*- mode: python -*-
+
+Import("env")
+
+env.SConscript(
+    dirs=[
+        'replset',
+    ],
+)
+
+env.Library(
+    target='sharding_catalog_client',
+    source=[
+        'sharding_catalog_client.cpp',
+    ],
+    LIBDEPS=[
+        '$BUILD_DIR/mongo/db/write_concern_options',
+    ]
+)
+
+env.Library(
+    target='sharding_catalog_mock',
+    source=[
+        'sharding_catalog_client_mock.cpp',
+        'sharding_catalog_manager_mock.cpp',
+    ],
+    LIBDEPS=[
+        'dist_lock_manager_mock',
+        'sharding_catalog_client',
+    ]
+)
+
+env.Library(
+    target='dist_lock_manager',
+    source=[
+        'dist_lock_manager.cpp',
+        'dist_lock_ping_info.cpp',
+    ],
+    LIBDEPS=[
+        '$BUILD_DIR/mongo/base',
+    ],
+)
+
+env.Library(
+    target='dist_lock_manager_mock',
+    source=[
+        'dist_lock_manager_mock.cpp',
+    ],
+    LIBDEPS=[
+        'dist_lock_manager',
+        '$BUILD_DIR/mongo/unittest/unittest',
+    ],
+)
+
+env.Library(
+    target='dist_lock_catalog_interface',
+    source=[
+        'dist_lock_catalog.cpp',
+    ],
+    LIBDEPS=[
+        '$BUILD_DIR/mongo/db/write_concern_options',
+    ],
+)
+
+env.Library(
+    target='dist_lock_catalog_mock',
+    source=[
+        'dist_lock_catalog_mock.cpp',
+    ],
+    LIBDEPS=[
+        '$BUILD_DIR/mongo/s/common',
+        '$BUILD_DIR/mongo/unittest/unittest',
+        'dist_lock_catalog_interface',
+    ]
+)
